@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+</head>
+<body>
+<h1>Добавление пользователя:</h1>
+<hr>
+<form th:method="POST" th:action="@{/registration}" th:object="${user}">
+
+    <label for="username">Username</label>
+    <input type="text" th:field="*{username}" id="username">
+    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Errors</div>
+    <br>
+
+    <label for="password">Password</label>
+    <input type="password" th:field="*{password}" id="password">
+    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Errors</div>
+    <br>
+
+    <label for="firstName">Введите имя</label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Firstname Errors</div>
+    <br>
+
+    <label for="lastName">Введите фамилию</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Errors</div>
+    <br>
+
+
+    <input type="submit" value="Создать">
+</form>
+<br>
+<br>
+<form action="#" th:action="@{/logout}" method="get">
+    <input type="submit" value="Logout" />
+</form>
+</body>
+</html>

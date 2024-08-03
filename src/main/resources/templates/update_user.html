@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение пользователя</title>
+</head>
+<body>
+<h1>Изменение пользователя:</h1>
+<hr>
+
+<form th:method="POST" th:action="@{/admin/update}" th:object="${user}">
+    <label for="username">Username</label>
+    <input type="hidden" th:field="*{username}" th:text="*{username}" id="username">
+    <br>
+
+    <input type="hidden" th:field="*{password}" id="password">
+    <br>
+
+    <label for="firstName">Введите имя</label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Firstname Errors</div>
+    <br>
+
+    <label for="lastName">Введите фамилию</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Errors</div>
+    <br>
+
+
+    <input type="submit" value="Обновить информацию">
+</form>
+<br>
+<br>
+<form action="#" th:action="@{/logout}" method="get">
+    <input type="submit" value="Logout" />
+</form>
+</body>
+</html>

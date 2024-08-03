@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+</head>
+<body>
+<h1>Пользователь:</h1>
+<hr>
+<table th:border="2">
+    <thead>
+    <tr>
+        <th>Имя пользователя</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${user.getUsername()}" th:align="center"></td>
+        <td th:text="${user.getFirstName()}" th:align="center"></td>
+        <td th:text="${user.getLastName()}" th:align="center"></td>
+    </tr>
+    <tr>
+        <th>Роли</th>
+        <tr th:each="role : ${user.getRoles()}">
+            <td th:text="${role.getName()}" th:align="center"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<br>
+<form action="#" th:action="@{/admin/users}" method="get">
+    <input type="submit" value="Список всех пользователей"/>
+</form>
+<br>
+<br>
+<form action="#" th:action="@{/admin/new}" method="get">
+    <input type="submit" value="Добавить пользователя"/>
+</form>
+<br>
+<br>
+<form action="#" th:action="@{/logout}" method="get">
+    <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>

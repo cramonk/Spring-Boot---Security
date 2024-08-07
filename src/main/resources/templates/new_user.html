@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Добавление пользователя</title>
 </head>
 <body>
 <h1>Добавление пользователя:</h1>
 <hr>
-<form th:method="POST" th:action="@{/registration}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
 
     <label for="username">Username</label>
     <input type="text" th:field="*{username}" id="username">
@@ -29,7 +30,17 @@
     <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Errors</div>
     <br>
 
-
+    <label for="roles">Выберите роли</label>
+        <div id="roles">
+            <div th:each="role:${allRoles}" >
+                <div class="ui checkbox" >
+                    <div>
+                        <input type="checkbox"  th:field="*{roleNames}" th:value="${role}" id="role">
+                        <label for="role" th:text="${role}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
     <input type="submit" value="Создать">
 </form>
 <br>

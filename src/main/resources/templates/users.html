@@ -21,8 +21,7 @@
         <td th:text="${user.getUsername()}" th:align="center"></td>
         <td th:text="${user.getFirstName()}" th:align="center"></td>
         <td th:text="${user.getLastName()}" th:align="center"></td>
-
-        <td th:text="${#strings.listJoin(user.getRolesNames(), ', ')}"></td>
+        <td th:text="${#strings.listJoin(user.getListOfRoleNames(), ', ')}"></td>
 
         <td>
             <form action="#" th:action="@{/admin/update}" method="get">

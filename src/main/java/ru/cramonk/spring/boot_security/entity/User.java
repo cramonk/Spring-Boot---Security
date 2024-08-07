@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -37,13 +40,16 @@ public class User implements UserDetails {
     @Column(name = "second_name")
     private String lastName;
 
+
     @ManyToMany
     @JoinTable(name = "users_roles",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    private List<Role> roles;
 
-    public Collection<String> getRolesNames() {
+    @Transient
+    private List<String> roleNames;
+    public List<String> getListOfRoleNames() {
         return roles.stream().map(Role::getName).collect(Collectors.toList());
     }
 

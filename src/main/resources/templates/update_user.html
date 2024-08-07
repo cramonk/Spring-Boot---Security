@@ -2,32 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Изменение пользователя</title>
+
+    <title>Обновить информацию</title>
 </head>
 <body>
-<h1>Изменение пользователя:</h1>
+<h1>Обновить информацию:</h1>
 <hr>
-
 <form th:method="POST" th:action="@{/admin/update}" th:object="${user}">
     <label for="username">Username</label>
-    <input type="hidden" th:field="*{username}" th:text="*{username}" id="username">
+    <input type="hidden" th:field="*{username}" id="username">
+    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Errors</div>
     <br>
 
-    <input type="hidden" th:field="*{password}" id="password">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Errors</div>
     <br>
 
-    <label for="firstName">Введите имя</label>
+    <label for="firstName">Введите новое имя</label>
     <input type="text" th:field="*{firstName}" id="firstName">
     <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Firstname Errors</div>
     <br>
 
-    <label for="lastName">Введите фамилию</label>
+    <label for="lastName">Введите новую фамилию</label>
     <input type="text" th:field="*{lastName}" id="lastName">
     <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Errors</div>
     <br>
 
-
-    <input type="submit" value="Обновить информацию">
+    <label for="roles">Измените роли</label>
+    <div id="roles">
+        <div th:each="role:${allRoles}" >
+            <div class="ui checkbox" >
+                <div>
+                    <input type="checkbox"  th:field="*{roleNames}" th:value="${role}" id="role">
+                    <label for="role" th:text="${role}"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Создать">
 </form>
 <br>
 <br>
